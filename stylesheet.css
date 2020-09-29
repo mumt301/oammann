@@ -1,0 +1,19 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1 {
+    
+    color: blueviolet;
+    font-size: 18;
+    text-shadow: 2px 2px 5px;
+}
+.site-navigation {
+    color: blueviolet;
+    margin: 0;
+    padding: 0;
+}
+.site-navigation li {
+    float: left;
+    display: block;
+    padding: 16px;
+}
