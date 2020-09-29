@@ -1,5 +1,36 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: cornsilk;
+}
+.title {
+    margin-left:300px;
+}
+.home-image {
+    margin-left: 50px;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+.bio-source {
+    margin-left: 40px;
+}
+
+.bio-text {
+    float:right;
+    margin-left: 40px;
+    display: block;
+}
+
+.bio-image {
+    float: left;
+    display: block;
+    width: 800px;
+}
+
+.video {
+    margin: 50px;
 }
 h1 {
     
@@ -10,10 +41,28 @@ h1 {
 .site-navigation {
     color: blueviolet;
     margin: 0;
+    margin-left: 50px;
     padding: 0;
 }
 .site-navigation li {
     float: left;
     display: block;
+    font-size: larger;
+    margin-right: 60px;
+    padding: 20px;
+}
+
+.albums li {
+    float: left;
+    display: block;
     padding: 16px;
+}
+
+.discography h3 {
+    margin: 30px;
+}
+
+.home-button {
+    margin: 10px;
+    padding: 10px;
 }
