@@ -15,19 +15,20 @@
         try {//Pause currently playing audio
           previousAudio.pause()
         } catch (err) {
+        } finally {
+            previousAudio = audio;
+          audio.type = 'audio/wav';
+
+
+
+          try {
+            await audio.play();
+            console.log('Playing...');
+          } catch (err) {
+            console.log('Failed to play...' + err);
+          }
         }
 
-        previousAudio = audio;
-        audio.type = 'audio/wav';
-
-
-
-        try {
-          await audio.play();
-          console.log('Playing...');
-        } catch (err) {
-          console.log('Failed to play...' + err);
-        }
       }
 
     </script>
@@ -239,7 +240,7 @@
                 <td class="tg-0pky">712</td>
                 <td class="tg-0pky">0.045</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 96 ac3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 96 ac3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 96 ac3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -250,7 +251,7 @@
                 <td class="tg-0pky">949</td>
                 <td class="tg-0pky">0.0601</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 128 ac3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 ac3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 ac3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -261,7 +262,7 @@
                 <td class="tg-0pky">1423</td>
                 <td class="tg-0pky">0.091</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 192 ac3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 192 ac3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 192 ac3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -272,7 +273,7 @@
                 <td class="tg-0pky">2365</td>
                 <td class="tg-0pky">0.151</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 320 ac3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 ac3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 ac3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -283,7 +284,7 @@
                 <td class="tg-0pky">712</td>
                 <td class="tg-0pky">0.045</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 96 mp3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 96 mp3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 96 mp3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -294,7 +295,7 @@
                 <td class="tg-0pky">949</td>
                 <td class="tg-0pky">0.0601</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 128 mp3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 mp3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 mp3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -305,7 +306,7 @@
                 <td class="tg-0pky">1423</td>
                 <td class="tg-0pky">0.091</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 192 mp3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 192 mp3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 192 mp3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -316,7 +317,7 @@
                 <td class="tg-0pky">2365</td>
                 <td class="tg-0pky">0.151</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 320 mp3.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 mp3.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 mp3 residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -327,7 +328,7 @@
                 <td class="tg-0pky">1454</td>
                 <td class="tg-0pky">0.093</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 98 m4a.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 98 m4a.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 98 m4a residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -338,19 +339,19 @@
                 <td class="tg-0pky">1454</td>
                 <td class="tg-0pky">0.093</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 128 m4a.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 m4a.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 m4a residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
                 <td class="tg-0pky">She's Menacing</td>
                 <td class="tg-0pky">M4A</td>
-                <td class="tg-0pky">191</td>
+                <td class="tg-0pky">194</td>
                 <td class="tg-0pky">15667</td>
                 <td class="tg-0pky">1454</td>
                 <td class="tg-0pky">0.093</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 191 m4a.wav`)">Compressed Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 191 m4a residual.wav`)">Residual Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 194 m4a.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 194 m4a residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
                 <td class="tg-0pky">She's Menacing</td>
@@ -360,7 +361,7 @@
                 <td class="tg-0pky">2376</td>
                 <td class="tg-0pky">0.152</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 320 m4a.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 m4a.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 m4a residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -371,7 +372,7 @@
                 <td class="tg-0pky">725</td>
                 <td class="tg-0pky">0.046</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 96 ogg.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 96 ogg.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 96 ogg residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -382,7 +383,7 @@
                 <td class="tg-0pky">965</td>
                 <td class="tg-0pky">0.06</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/She's Menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 128 ogg.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 ogg.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 128 ogg residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -393,7 +394,7 @@
                 <td class="tg-0pky">1433</td>
                 <td class="tg-0pky">0.091</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/She's Menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 192 ogg.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 192 ogg.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 192 ogg residual.wav`)">Residual Audio</a></td>
               </tr>
               <tr>
@@ -404,7 +405,7 @@
                 <td class="tg-0pky">2396</td>
                 <td class="tg-0pky">0.153</td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/She's Menacing.wav`)">Original Audio</a></td>
-                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menaicng 320 ogg.wav`)">Compressed Audio</a></td>
+                <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 ogg.wav`)">Compressed Audio</a></td>
                 <td class="tg-0pky"><a href="#" onclick="playAudio(`A4_wav/she's menacing 320 ogg residual.wav`)">Residual Audio</a></td>
               </tr>
             </tbody>
