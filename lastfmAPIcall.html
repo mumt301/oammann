@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <title>Last.fm API Call</title>
+        <link rel="stylesheet" href="https://minicss.org/flavorFiles/mini-default.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Type a song and an artist to get recommended similar tracks!</h1>
+        <h3>Owen Ammann</h3>
+        <p>Using the Last.fm API: <a href="https://www.last.fm/home">last.fm</a></p>
+
+        <!-- Step 2: Create the form-->
+        <form method="GET">
+            <label for="songTitle">Song Title:</label>
+            <input type="text" name="songTitle" id="songTitle">
+            <br>
+            <label for="artist">Artist name:</label>
+            <input type="text" name="artistName" id="artist">
+            <br>
+            <input type="submit">
+        </form>
+        <!-- Step 3: Retrive the artist name data submitted through the form-->
+        <div id="placeholder"></div>
+        <script type="text/JavaScript">
+            let apiKey = "d64b28505261bc621342754fdf746e99";
+            function queryArtist() {
+                let params = (new URL(document.location)).searchParams;
+                if(params.has('artistName') && params.has('songTitle')) {
+                    let artistName = params.get('artistName');
+                    console.log(artistName);
+                    let songTitle = params.get('songTitle');
+                    //Step 4: Check the last fm API call call and response to get info
+                    //Crafting the API call.message
+                    let apiKey = "d64b28505261bc621342754fdf746e99";
+                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + 
+                    "track.getSimilar" + "&track="+ songTitle + "&artist=" + artistName + "&api_key=" + apiKey;
+
+                    console.log(queryURL);
+
+                    //Step 5:
+                    httpGet(queryURL, getSimilarTracks);
+                }
+            }
+
+            function httpGet(queryURL, cbFunction) {
+                let request = new XMLHttpRequest();
+                request.open("GET", queryURL);
+                request.send();
+                request.onreadystatechange = function () {
+                    if(this.readyState==4) {
+
+                        cbFunction(this);
+                    }
+                }
+            }
+
+            function getSimilarTracks(response) {
+                let placeholder = document.getElementById("placeholder");
+                let data = response.responseXML;
+                //console.log(data);
+                let tracks = data.getElementsByTagName("track");
+                let numTracks = 5;
+                for(i=0; i<numTracks; i++) {
+                    let trackName = tracks[i].getElementsByTagName("name")[0].innerHTML;
+                    let artistName = tracks[i].getElementsByTagName("artist")[0].getElementsByTagName("name")[0].innerHTML;
+                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + 
+                    "track.getInfo" + "&track="+ trackName + "&artist=" + artistName + "&api_key=" + apiKey;
+                    httpGet(queryURL, getTrackDescription);
+                }
+            }
+
+            function getTrackDescription(response) {
+                let placeholder = document.getElementById("placeholder");
+                let data = response.responseXML;
+                console.log(data);
+                let trackName;
+                try{
+                    trackName = data.getElementsByTagName("name")[0].innerHTML;
+                } catch (error) {
+                    trackName = "";
+                }
+
+                let artistName;
+                try{
+                    artistName = data.getElementsByTagName("artist")[0].getElementsByTagName("name")[0].innerHTML;
+                } catch (error) {
+                    artistName = "Artist not found.";
+                }
+                let playCount;
+                try{
+                    playCount = data.getElementsByTagName("playcount")[0].innerHTML;
+                } catch (error) {
+                    playCount = "";
+                }
+                let duration;
+                try {
+                    duration = data.getElementsByTagName("duration")[0].innerHTML;
+                } catch (error) {
+                    duration = "";
+                }
+                let image;
+                try {
+                    image = data.getElementsByTagName("image")[2].innerHTML;
+                } catch (error) {
+                    image = "";
+                } 
+                //description = data.getElementsByTagName("wiki")[0].innerHTML;
+                let description;
+                try {
+                    description = data.getElementsByTagName("wiki")[0].outerHTML;
+                } catch(error) {
+                    description = "";
+                }
+                duration /= 1000;
+                let minutes = Math.floor(duration/60);
+                    let seconds = duration % 60;
+                    if(seconds < 10) {
+                        seconds = ("0" + seconds).slice(-2);
+                    }
+
+                placeholder.innerHTML +=
+                    `
+                    <div>
+                        <h3 name="trackName">${trackName}</h3>
+                        <h4>By: ${artistName}</h4>
+                        <img src="${image}">
+                        <h5>Duration: ${minutes}:${seconds}</h5>
+                        <h5>Playcount: ${playCount}</h5>
+                        <br>
+                        <div>${description}</div>
+                        <br>
+                    </div>
+                    `;
+            }
+
+            function getBioAndImage(response) {
+                let placeholder = document.getElementById("placeholder");
+                let data = response.responseXML;
+                let artistMBID = data.getElementsByTagName('mbid')[0].innerHTML;
+                console.log(artistMBID);
+                let bioContent = data.getElementsByTagName('content')[0].innerHTML;
+                console.log(artistMBID);
+                let bio = document.createElement('p');
+                bio.innerHTML = bioContent;
+                placeholder.appendChild(bio);
+
+                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + 
+                    "artist.gettopalbums" + "&mbid=" + artistMBID + "&api_key=" + apiKey;
+
+                httpGet(queryURL2, getImage);
+            }
+
+            function getImage(response) {
+                let retrievedData = response.responseXML;
+                let image = retrievedData.getElementsByTagName('image')[3].innerHTML;
+                let placeholder = document.getElementById("placeholder");
+                let img = document.createElement("img");
+                img.src = image;
+                placeholder.appendChild(img);
+            }
+
+            window.onload = queryArtist();
+        </script>
+
+    </body>
+</html>
