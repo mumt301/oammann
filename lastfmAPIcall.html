@@ -32,7 +32,7 @@
                     //Step 4: Check the last fm API call call and response to get info
                     //Crafting the API call.message
                     let apiKey = "d64b28505261bc621342754fdf746e99";
-                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + 
+                    let queryURL = "https://ws.audioscrobbler.com/2.0" + "?method=" + 
                     "track.getSimilar" + "&track="+ songTitle + "&artist=" + artistName + "&api_key=" + apiKey;
 
                     console.log(queryURL);
@@ -63,7 +63,7 @@
                 for(i=0; i<numTracks; i++) {
                     let trackName = tracks[i].getElementsByTagName("name")[0].innerHTML;
                     let artistName = tracks[i].getElementsByTagName("artist")[0].getElementsByTagName("name")[0].innerHTML;
-                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + 
+                    let queryURL = "https://ws.audioscrobbler.com/2.0" + "?method=" + 
                     "track.getInfo" + "&track="+ trackName + "&artist=" + artistName + "&api_key=" + apiKey;
                     httpGet(queryURL, getTrackDescription);
                 }
@@ -144,7 +144,7 @@
                 bio.innerHTML = bioContent;
                 placeholder.appendChild(bio);
 
-                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + 
+                let queryURL2 = "https://ws.audioscrobbler.com/2.0" + "?method=" + 
                     "artist.gettopalbums" + "&mbid=" + artistMBID + "&api_key=" + apiKey;
 
                 httpGet(queryURL2, getImage);
