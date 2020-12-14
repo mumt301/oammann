@@ -49,17 +49,6 @@ keys.forEach(key => {
     key.addEventListener('mouseup', () => {
         key.classList.remove('active');
     });
-    /*key.addEventListener('keydown', e => {
-        let keyPressed = e.code.slice(-1).charCodeAt(0);
-        console.log(keyPressed);
-        if(keyboard[keyPressed]==key.data.note) {
-            let index = e.code.slice(-1).charCodeAt(0);
-            let note = keyboard[index];
-            console.log(note);
-            try {playFromInput(note);}
-            catch (error) {}
-        }
-    });*/
 });
 
 
@@ -67,7 +56,6 @@ document.addEventListener('keydown', e => {
     let index = e.code.slice(-1).charCodeAt(0);
     let note = keyboard[index];
     let key=document.querySelectorAll(`[data-note='${note}']`)[0];
-    console.log(key);
     key.classList.add('active');
     try {playFromInput(key);}
     catch (error) {}
@@ -83,7 +71,6 @@ functionLists.forEach(functionList => {
     var listOnNote = functionsOnKey[note];
     addF.addEventListener('click', () => {
         if(listOnNote.slice(-1)[0]=="F") {
-            console.log("match");
             listOnNote.pop();
             //reconstruct the list
             functions.innerHTML = '';
@@ -96,7 +83,6 @@ functionLists.forEach(functionList => {
         } else {
             functions.innerHTML += '<div>&Phi;</div>';
             listOnNote.push('F');
-            console.log('F');
         }
     });
     addG.addEventListener('click', () => {
@@ -113,7 +99,6 @@ functionLists.forEach(functionList => {
         } else {
             functions.innerHTML += '<div>&Gamma;</div>';
             listOnNote.push('G');
-            console.log('G');
         }
     });
 });
@@ -123,14 +108,12 @@ function playFromInput(key) {
     let note = key.dataset.note;
     noteAudio = playNote(note);
     key.classList.add('active');
-    console.log(note);
     setTimeout(function() {playInvolutions(note)}, 3000);
 }
 
 function playInvolutions(note) {
     if(functionsOnKey[note].length > 0) {
         note = calculateNextNote(note);
-        console.log("next note:", note);
         playNote(note);
         setTimeout(function() {playInvolutions(note)}, 3000);
     }
@@ -145,20 +128,15 @@ function playNote(note) {
 
 function calculateNextNote(key) {
     let notes = Object.keys(functionsOnKey);
-    console.log(notes);
     let n = notes.indexOf(key);
-    console.log("initial value:",n);
     let functionList = functionsOnKey[key];
     let func;
     for(var i=0; i<functionList.length; i++) {
         func = functionList[i];
-        console.log(n);
         if(func=='F') {
             n = F(n);
-            console.log("F n", n);
         } else if (func=='G') {
             n = G(n);
-            console.log("G n", n);
         }
     }
     return notes[n];
@@ -166,7 +144,6 @@ function calculateNextNote(key) {
 
 function F(n) {
     let result = (-n)%12;
-    console.log("result:", result);
     if(result<0) result += 12;
     return result;
 }
