@@ -124,7 +124,7 @@ function playFromInput(key) {
     noteAudio = playNote(note);
     key.classList.add('active');
     console.log(note);
-    setTimeout(function() {playInvolutions(note)}, 3500);
+    setTimeout(function() {playInvolutions(note)}, 3000);
 }
 
 function playInvolutions(note) {
@@ -132,7 +132,7 @@ function playInvolutions(note) {
         note = calculateNextNote(note);
         console.log("next note:", note);
         playNote(note);
-        setTimeout(function() {playInvolutions(note)}, 3500);
+        setTimeout(function() {playInvolutions(note)}, 3000);
     }
 }
 
