@@ -88,10 +88,13 @@ functionLists.forEach(functionList => {
             //reconstruct the list
             functions.innerHTML = '';
             for(var i=0; i<listOnNote.length; i++) {
-                functions.innerHTML += `<div>${listOnNote[i]}</div>`;
+                let letter;
+                if(listOnNote[i]=='F') letter = '&Phi;';
+                else if(listOnNote[i]=='G') letter = '&Gamma;';
+                functions.innerHTML += `<div>${letter}</div>`;
             }
         } else {
-            functions.innerHTML += '<div>F</div>';
+            functions.innerHTML += '<div>&Phi;</div>';
             listOnNote.push('F');
             console.log('F');
         }
@@ -102,10 +105,13 @@ functionLists.forEach(functionList => {
             //reconstruct the list
             functions.innerHTML = '';
             for(var i=0; i<listOnNote.length; i++) {
-                functions.innerHTML += `<div>${listOnNote[i]}<div>`;
+                let letter;
+                if(listOnNote[i]=='F') letter = '&Phi;';
+                else if(listOnNote[i]=='G') letter = '&Gamma;';
+                functions.innerHTML += `<div>${letter}</div>`;
             }
         } else {
-            functions.innerHTML += '<div>G</div>';
+            functions.innerHTML += '<div>&Gamma;</div>';
             listOnNote.push('G');
             console.log('G');
         }

@@ -10,6 +10,13 @@ body {
 
 }
 
+.logo {
+    display: flex;
+    font-size: 24px;
+    justify-content: center;
+    background-color: white;
+}
+
 .piano {
     display: flex;
     justify-content: center;
